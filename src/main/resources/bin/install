@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# TODO: add a check here that makes sure the setup-quickinstall.sh is still there, otherwise give a note
+
+# TODO: also make maven make this executable
+
+# TODO: git filter branch and save just the quickinstall
+
+bash bin/setup-quickinstall.sh
