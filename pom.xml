@@ -3,7 +3,7 @@
   <groupId>com.accumulobook</groupId>
   <artifactId>accumulo-quickinstall</artifactId>
   <packaging>pom</packaging>
-  <version>1.6.1</version>
+  <version>1.5.0</version>
   <description>Create a standalone distribution of the Apache Accumulo
   Project version ${project.version} with dependencies</description>
   <name>AccumuloBook QuickInstall</name>
@@ -21,7 +21,7 @@
   </pluginRepositories>
   <properties>
     <quickinstall.location>${project.build.directory}/archive-tmp</quickinstall.location>
-    <hadoop.version>2.4.1</hadoop.version>
+    <hadoop.version>1.0.4</hadoop.version>
     <hadoop.url>http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop.version}/hadoop-${hadoop.version}.tar.gz</hadoop.url>
     <hadoop.md5>0ce4cfd282002b7aa42cf71df4145150</hadoop.md5>
     <zookeeper.version>3.4.6</zookeeper.version>
@@ -127,5 +127,15 @@
         </executions>
       </plugin>
     </plugins>
+    <profiles>
+      <profile>
+        <id>hadoop2</id>
+        <properties>
+          <hadoop.version>2.2.0</hadoop.version>
+          <hadoop.url>http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop.version}/hadoop-${hadoop.version}.tar.gz</hadoop.url>
+          <hadoop.md5>0ce4cfd282002b7aa42cf71df4145150</hadoop.md5>
+        </properties>
+      </profile>
+    </profiles>
   </build>
 </project>
