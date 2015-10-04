@@ -192,6 +192,8 @@ fi
 EOF
   sed -i.bak 's!<value>root</value>!<value>trace</value>!g' ${ACCUMULO_HOME}/conf/accumulo-site.xml
   sed -i.bak 's!<value>secret</value>!<value>trace</value>!g' ${ACCUMULO_HOME}/conf/accumulo-site.xml
+  # perl for multi-line replace
+  perl -0777 -i.bak -pe '''s!<name>instance.volumes</name>\n    <value></value>!<name>instance.volumes</name>\n    <value>hdfs://localhost:9000/accumulo</value>!g''' ${ACCUMULO_HOME}/conf/accumulo-site.xml
   export ACCUMULO_HOME
 }
 
