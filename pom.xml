@@ -21,10 +21,11 @@
   </pluginRepositories>
   <properties>
     <quickinstall.location>${project.build.directory}/archive-tmp</quickinstall.location>
-    <hadoop.version>2.7.1</hadoop.version>
+    <!-- Some issues upgrading to 2.7.1, or even 2.6.1. -->
+    <hadoop.version>2.4.1</hadoop.version>
     <hadoop.filename>hadoop-${hadoop.version}.tar.gz</hadoop.filename>
     <hadoop.url>http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop.version}/${hadoop.filename}</hadoop.url>
-    <hadoop.md5>203e5b4daf1c5658c3386a32c4be5531</hadoop.md5>
+    <hadoop.md5>0ce4cfd282002b7aa42cf71df4145150</hadoop.md5>
     <zookeeper.version>3.4.6</zookeeper.version>
     <zookeeper.filename>zookeeper-${zookeeper.version}.tar.gz</zookeeper.filename>
     <zookeeper.url>http://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper.version}/${zookeeper.filename}</zookeeper.url>
