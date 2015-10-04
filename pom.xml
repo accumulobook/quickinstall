@@ -107,7 +107,7 @@
                     <exclude>accumulo-x.x.x/**</exclude>
                   </excludes>
                   <includes>
-                    <include>bin/setup-quickinstall.sh</include>
+                    <include>bin/install</include>
                   </includes>
                 </resource>
                 <resource>
@@ -117,7 +117,7 @@
                     <exclude>hadoop-x.x.x/**</exclude>
                     <exclude>zookeeper-x.x.x/**</exclude>
                     <exclude>accumulo-x.x.x/**</exclude>
-                    <exclude>bin/setup-quickinstall.sh</exclude>
+                    <exclude>bin/install</exclude>
                   </excludes>
                 </resource>
               </resources>
