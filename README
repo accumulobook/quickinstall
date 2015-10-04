@@ -26,6 +26,16 @@ There are three steps to install the AccumuloBook QuickInstall.
 
        ./bin/install
 
+    - You may need to install openssh if the script complains that it 
+      cannot ssh into localhost. One way to do this is by:
+       
+       $ sudo apt-get install openssh-server
+
+      Then, if you do not have an ssh key (usually called id_rsa/id_rsa.pub in ~/.ssh):
+
+       ssk-keygen
+       cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
 ******************************************************************************
 2. Usage
 
