@@ -170,7 +170,7 @@ setup_accumulo_conf() {
   EXAMPLE_CONFIG="2GB/native-standalone"
   local return_dir=${PWD}
   cd ${ACCUMULO_HOME}
-  ./bin/build_native_library.sh || EXAMPLE_CONFIG="2BG/standalone"
+  ./bin/build_native_library.sh || EXAMPLE_CONFIG="2GB/standalone"
   cd ${return_dir}
   echo "Starting configs are from ${EXAMPLE_CONFIG}"
   cp -R ${ACCUMULO_HOME}/conf/examples/${EXAMPLE_CONFIG}/* ${ACCUMULO_HOME}/conf/.
