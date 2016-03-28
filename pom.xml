@@ -3,7 +3,7 @@
   <groupId>com.accumulobook</groupId>
   <artifactId>accumulo-quickinstall</artifactId>
   <packaging>pom</packaging>
-  <version>1.7.0</version>
+  <version>1.7.1</version>
   <description>Create a standalone distribution of the Apache Accumulo
   Project version ${project.version} with dependencies</description>
   <name>AccumuloBook QuickInstall</name>
@@ -33,7 +33,7 @@
     <accumulo.version>${project.version}</accumulo.version>
     <accumulo.filename>accumulo-${accumulo.version}-bin.tar.gz</accumulo.filename>
     <accumulo.url>http://archive.apache.org/dist/accumulo/${accumulo.version}/${accumulo.filename}</accumulo.url>
-    <accumulo.md5>898ec8e2c9d048be554a32a344dd6170</accumulo.md5>
+    <accumulo.md5>4b114b00709f2238491ee56696535ad7</accumulo.md5>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
