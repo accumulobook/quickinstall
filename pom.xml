@@ -3,7 +3,7 @@
   <groupId>com.accumulobook</groupId>
   <artifactId>accumulo-quickinstall</artifactId>
   <packaging>pom</packaging>
-  <version>1.6.1</version>
+  <version>1.7.1</version>
   <description>Create a standalone distribution of the Apache Accumulo
   Project version ${project.version} with dependencies</description>
   <name>AccumuloBook QuickInstall</name>
@@ -21,15 +21,20 @@
   </pluginRepositories>
   <properties>
     <quickinstall.location>${project.build.directory}/archive-tmp</quickinstall.location>
+    <!-- Some issues upgrading to 2.7.1, or even 2.6.1. -->
     <hadoop.version>2.4.1</hadoop.version>
-    <hadoop.url>http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop.version}/hadoop-${hadoop.version}.tar.gz</hadoop.url>
+    <hadoop.filename>hadoop-${hadoop.version}.tar.gz</hadoop.filename>
+    <hadoop.url>http://archive.apache.org/dist/hadoop/core/hadoop-${hadoop.version}/${hadoop.filename}</hadoop.url>
     <hadoop.md5>0ce4cfd282002b7aa42cf71df4145150</hadoop.md5>
     <zookeeper.version>3.4.6</zookeeper.version>
-    <zookeeper.url>http://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper.version}/zookeeper-${zookeeper.version}.tar.gz</zookeeper.url>
+    <zookeeper.filename>zookeeper-${zookeeper.version}.tar.gz</zookeeper.filename>
+    <zookeeper.url>http://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper.version}/${zookeeper.filename}</zookeeper.url>
     <zookeeper.md5>971c379ba65714fd25dc5fe8f14e9ad1</zookeeper.md5>
     <accumulo.version>${project.version}</accumulo.version>
-    <accumulo.url>http://archive.apache.org/dist/accumulo/${accumulo.version}/accumulo-${accumulo.version}-bin.tar.gz</accumulo.url>
-    <accumulo.md5>523d3ab55a6fe2b48c0a1d012f9c2ffc</accumulo.md5>
+    <accumulo.filename>accumulo-${accumulo.version}-bin.tar.gz</accumulo.filename>
+    <accumulo.url>http://archive.apache.org/dist/accumulo/${accumulo.version}/${accumulo.filename}</accumulo.url>
+    <accumulo.md5>4b114b00709f2238491ee56696535ad7</accumulo.md5>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <build>
     <plugins>
@@ -95,12 +100,49 @@
               <resources>
                 <resource>
                   <directory>src/main/resources</directory>
-                  <!--
+                  <filtering>true</filtering>
+                  <excludes>
+                    <exclude>hadoop-x.x.x/**</exclude>
+                    <exclude>zookeeper-x.x.x/**</exclude>
+                    <exclude>accumulo-x.x.x/**</exclude>
+                  </excludes>
+                  <includes>
+                    <include>bin/install</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>src/main/resources</directory>
                   <filtering>false</filtering>
-                  -->
+                  <excludes>
+                    <exclude>hadoop-x.x.x/**</exclude>
+                    <exclude>zookeeper-x.x.x/**</exclude>
+                    <exclude>accumulo-x.x.x/**</exclude>
+                    <exclude>bin/install</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>mover</id>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <copy todir="${quickinstall.location}/hadoop-${hadoop.version}"><fileset dir="${project.basedir}/src/main/resources/hadoop-x.x.x"/></copy>
+                <copy todir="${quickinstall.location}/zookeeper-${zookeeper.version}"><fileset dir="${project.basedir}/src/main/resources/zookeeper-x.x.x"/></copy>
+                <copy todir="${quickinstall.location}/accumulo-${accumulo.version}"><fileset dir="${project.basedir}/src/main/resources/accumulo-x.x.x"/></copy>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

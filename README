@@ -26,6 +26,39 @@ There are three steps to install the AccumuloBook QuickInstall.
 
        ./bin/install
 
+Other install notes:
+
+    - You may need to install openssh if the script complains that it 
+      cannot ssh into localhost. One way to do this is by:
+       
+       $ sudo apt-get install openssh-server
+
+      Then, if you do not have an ssh key (usually called id_rsa/id_rsa.pub in ~/.ssh):
+      *this will overwrite your ssh key if you already have one*
+
+       ssh-keygen -q -t rsa -P "" -f ~/.ssh/id_rsa
+       cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+    - If you are annoyed at seeing messages of the form
+      "WARN : Max open files on localhost is 1024, recommend 32768",
+      you can get rid of the message (after restarting the computer) with
+
+       sudo echo 'dhutchis           soft    nofile          32768' >> /etc/security/limits.conf
+       sudo echo 'dhutchis           hard    nofile          32768' >> /etc/security/limits.conf
+
+    - If you are annoyed at seeing messages of the form
+      "System swappiness setting is greater than ten (60) which can cause time-sensitive operations to be delayed."
+      you can get rid of the message with
+
+       sudo echo 'vm.swappiness = 10' >> /etc/sysctl.conf
+       sudo sysctl vm.swappiness=10
+
+    - The tracer process may die on the first run of Accumulo.  Don't worry, just restart Accumulo
+      and the tracer will work fine. The reason is that we change the user/pass of the tracer process to trace/trace.
+
+    - This install uses the 2GB default configuration of the Accumulo parameters.
+      Feel free to tweak in accumulo-site.xml.
+
 ******************************************************************************
 2. Usage
 
