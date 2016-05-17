@@ -220,8 +220,8 @@ finish() {
   # make all files executable
   chmod 755 ${QI_HOME}/bin/*
   # leave this script 400 and rename it
-  chmod 400 $(_script_dir)/setup-quickinstall.sh
-  mv $(_script_dir)/setup-quickinstall.sh $(_script_dir)/setup-quickinstall.sh.already.run
+  chmod 400 $(_script_dir)/install.sh
+  mv $(_script_dir)/install.sh $(_script_dir)/install.sh.already.run
   cat <<-EOF
 
 ************************************************
